@@ -1,10 +1,9 @@
 
 require 'yaml'
-info = YAML.load(File.open(File.join(File.dirname(_FILE_), config.yml)))
 
-class BankAccount
-
-attr_accessor :name, :password, :accaunt_num, :balance
+class person
+info :name, :password, :accaunt_num, :balance
+end
 
 def initialize
     @your_account = []
@@ -14,55 +13,27 @@ end
 def open
     if File.exist?("config.yml")
     @your_account = YAML.load_file("config.yml")
+    else 
+        print "ACCOUNT NUMBER AND PASSWORD DON'T MATCH"
     end
 end
 
- def account_review(your_account)
-    puts @your_acccount
-end
-
-def run
+module Info
     loop do
-        puts "Welcome to the bank."
-        puts "1. Create New Account"
-        puts "2. Review Your Account Information"
-        puts "3. Check Your Balance"
-        puts "4. Exit"
-        puts "Enter your choice:"
-            input = gets.chomp
-            case input
-            when '1'
-                new_account(first_name, last_name, address)
-            when '2'
-                account_review(your_account)
-            when '4'
-                save()
+        puts "Please Enter Your Account Number:"
+        num = gets.to_i
+        puts "Enter Your Password:"
+        pass = gets.to_i
+            if num && pass = :accaunt_num, :password
+               puts "Hello, " + :name
+            else
+                puts "ERROR: ACCOUNT NUMBER AND PASSWORD DON'T MATCH"
                 break
             end
     end
-end
-
-end
-
-#user = User.find_for_authentication(username: params[:username])
-#user.valid_password?(params[:password])
-
-def login
-  user = User.find_for_authentication(acc_num: login_params[:accaunt_num])
-
-  if user.valid_password?(login_params[:password])
-    user.remember_me = login_params[:remember_me]
-    sign_in_and_redirect(user, event: :authentication)
-  end
-end
-
-private
-def login_params
-  params.require(:user).permit(:email, :password, :remember_me)
-end
-
+                
 module Run
-include initialize
+include Info
     loop do 
     puts"1) Display Balance"
     puts"2) Withdraw"
@@ -79,29 +50,26 @@ include initialize
         case ans
         when 1
             puts"Your Current Balance is"+ :balance
-                       
+                      
             end
          when 2
             puts"Enter Amount You Wish to Withdraw:" 
               summ = gets
-              if sum =< balace
-              balance += summ.to_f
-               puts"Your New Balance is"+ :balance
+              if summ =< :balace
+                balance -= summ.to_f
+                puts"Your New Balance is"+ :balance
                 balance = balance.new
-                else 
-                    puts "ERROR: INSUFFICIENT FUNDS!! PLEASE ENTER A DIFFERENT AMOUNT:"
-                    summ = gets
-                    puts"1)Deposit  2)Withdrawal 3)Transfer 4)Balance 5)Exit"
-                    print"your choice :"
-                    ans = gets.chomp.to_i
-                    case ans 
-                    exit
+                    if summ = :balance
+                        puts "ERROR: THE AMOUNT YOU REQUESTED CANNOT BE COMPOSED FROM BILLS AVAILABLE IN THIS ATM. PLEASE ENTER A DIFFERENT AMOUNT:"
+                        summ = gets
+                                     
                 end
           when 3
           puts :name + "Thank You For Using Our ATM. Good-Bye!"
           break
           end
-            
+    
+     
 
                 
               
