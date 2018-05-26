@@ -2,14 +2,15 @@
 require 'yaml'
 
 got_data = YAML.load(File.open(File.join(File.dirname(_FILE_), 'config.yaml')))
+user = got_data[:account]
 
 def inizialaze
     puts "Please Enter Your Account Number:"
         num = gets.to_i
     puts "Enter Your Password:"
         pass = gets.to_i
-            if num && pass = [:accaunt_num] && [:password]
-               puts "Hello, " + [:name]
+            if num && pass = "#{user}" && "#{user[:password]}"
+               puts "Hello, " + "#{user[:name]}"
             else
                 puts "ERROR: ACCOUNT NUMBER AND PASSWORD DON'T MATCH"
                 break
@@ -17,11 +18,11 @@ def inizialaze
     end
             
 def menu
-    puts"1) Display Balance"
-    puts"2) Withdraw"
-    puts"3) Log Out"
-    puts"\n"
-    puts"Choose from the menu above:"
+    puts "1) Display Balance"
+    puts "2) Withdraw"
+    puts "3) Log Out"
+    puts "\n"
+    puts "Choose from the menu above:"
         ans = gets.chomp.to_i
             if (1..3).include?(ans) 
             else
@@ -31,26 +32,24 @@ def menu
 
         case ans
         when 1
-            puts"Your Current Balance is"+ [:balance]
-                      
-            end
-         when 2
+            puts"Your Current Balance is"+ "#{user[:balance]}"
+                       
+        when 2
             puts"Enter Amount You Wish to Withdraw:" 
               summ = gets
-              if summ =< [:balace]
+              if summ =< "#{user[:balance]}"
                 balance -= summ.to_f
-                puts"Your New Balance is"+ :balance
+                puts"Your New Balance is"+ "#{user[:balance]}"
                 balance = balance.new
-                    if summ = [:balance]
+                    if summ == "#{user[:balance]}"
                         puts "ERROR: THE AMOUNT YOU REQUESTED CANNOT BE COMPOSED FROM BILLS AVAILABLE IN THIS ATM. PLEASE ENTER A DIFFERENT AMOUNT:"
                         summ = gets
-                                     
-                end
+                            
           when 3
-          puts [:name] + "Thank You For Using Our ATM. Good-Bye!"
+          puts "#{user[:name]}" + "Thank You For Using Our ATM. Good-Bye!"
           break
           end
-    
+      end
      
 
                 
